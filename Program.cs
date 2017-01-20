@@ -13,7 +13,9 @@ namespace ConsoleApplication2
 			string alphabet = "ABCDEFGHIJ";
 			Console.WriteLine("Please select coordinates: ");
 			string answer = Console.ReadLine();
-			Console.WriteLine (alphabet.IndexOf(answer[0], 0));
+            int linenr = alphabet.IndexOf(answer[0], 0);
+
+			Console.WriteLine(linenr + answer[1]);
 
         }
         public static void updateboard()
