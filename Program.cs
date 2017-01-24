@@ -2,56 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace ConsoleApplication2
-{
     class Program
     {
         static void Main(string[] args)
         {
-			string alphabet = "ABCDEFGHIJ";
-			Console.WriteLine("Please select coordinates: ");
-			string answer = Console.ReadLine();
-            int linenr = alphabet.IndexOf(answer[0], 0);
-
-			Console.WriteLine(linenr + answer[1]);
+		Board board = new Board(7,7);
+		play(board);
 
         }
-        public static void updateboard()
-        { 
-			//string[,] board = new string[10, 10]; 
-			string alphabet = "ABCDEFGHIJ";
-            int c, i, j;
-            bool firstiteration = true;
-            
 
-
-            for (c = 1; c < 11; c++)
-            {
-                if (firstiteration)
-                {
-                    Console.Write(" ");
-                    firstiteration = false;
-                }
-                Console.Write(" " + c + " ");
-            }
-            Console.WriteLine();
-
-         
-            for (i = 0; i < 10; i++ )
-            {
-                Console.Write(alphabet[i]);
-                for (j = 0; j < 10; j++ )
-                {
-					//board[i, j] = ;
-               }
-
-                Console.WriteLine();
-            }
-
-            Console.ReadKey();
-        }
-
+	static void play(Board board)
+	{
+		board.drawboard();
+		Console.WriteLine();
+		Console.WriteLine("Please choose column to play: ");
+		int numcol = Convert.ToInt32(Console.ReadLine());
+		Console.WriteLine("Please enter X or O: ");
+		string color = Console.ReadLine();
+		board.updateboard(color, numcol);
+	}
     }
-}
