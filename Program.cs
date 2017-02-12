@@ -11,15 +11,35 @@ using System.Text;
 		play(board);
 
         }
-
+	
+	// Plays the game using a while loop until one of the check methods returns.
 	static void play(Board board)
 	{
-		board.drawboard();
-		Console.WriteLine();
-		Console.WriteLine("Please choose column to play: ");
-		int numcol = Convert.ToInt32(Console.ReadLine());
-		Console.WriteLine("Please enter X or O: ");
-		string color = Console.ReadLine();
-		board.updateboard(color, numcol);
+           	string[] colors = {"X","O"};
+		int i = 0;
+		while (true) {
+			board.drawBoard();
+			Console.WriteLine();
+			Console.WriteLine("Please choose column to play: ");
+			int numcol = Convert.ToInt32(Console.ReadLine());
+			string color = colors[i];
+			int row = board.updateBoard(color, numcol);
+			if (row != -1) {
+				if (board.checkHorizontal(row, color)) {
+					Console.WriteLine("Player " + color + " wins");
+					return;			
+				}
+				else if (board.checkVertical(numcol, color)) {
+					Console.WriteLine("Player " + color + " wins");
+					return;			
+				}
+
+			    	i = 1-i;
+			} else {
+			    Console.WriteLine("This column is full, please select another one");
+	
+			}
+		}
+		
 	}
     }
