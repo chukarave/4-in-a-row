@@ -26,11 +26,24 @@ using System.Text;
 			int row = board.updateBoard(color, numcol);
 			if (row != -1) {
 				if (board.checkHorizontal(row, color)) {
-					Console.WriteLine("Player " + color + " wins");
+					board.drawBoard();
+					Console.WriteLine();
+					Console.WriteLine("Woohoo! Player " + color + " wins!");
 					return;			
-				}
-				else if (board.checkVertical(numcol, color)) {
-					Console.WriteLine("Player " + color + " wins");
+				} else if (board.checkVertical(numcol, color)) {
+					board.drawBoard();
+					Console.WriteLine();
+					Console.WriteLine("Woohoo! Player " + color + " wins!");
+					return;			
+				} else if (board.checkDiagonalRtl(row, numcol, color)) {
+					board.drawBoard();
+					Console.WriteLine();
+					Console.WriteLine("Woohoo! Player " + color + " wins!");
+					return;			
+				} else if (board.checkDiagonalLtr(row, numcol, color)) {
+					board.drawBoard();
+					Console.WriteLine();
+					Console.WriteLine("Woohoo! Player " + color + " wins!");
 					return;			
 				}
 

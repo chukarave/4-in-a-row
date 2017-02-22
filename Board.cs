@@ -36,7 +36,8 @@ using System.Text;
                     Console.Write(board[i, j]+" ");
                }
 
-                Console.WriteLine();
+               Console.WriteLine(); 	
+		// Draw initial board.Console.WriteLine();
             }
             for (j = 0; j < nc; j++ )
 	    {
@@ -99,4 +100,48 @@ using System.Text;
 		return false;
 	}
 
+	public bool checkDiagonalLtr(int row, int col, string color)
+	{
+		int counter = 0;
+		int i;
+
+		for (i = -3; i <= 3; i++){
+			if (row + i < 0 || row + i >= nr
+			    || col + i < 0 || col + i >= nc) { 
+				continue;
+			} else if (color.Equals(board[row + i, col + i])){
+			    counter++;
+			    if (counter == 4) {
+			    	{ return true; }
+			    }
+			  } else {
+			     counter = 0; 
+			  }
+			}
+
+		return false;
+	}
+
+	public bool checkDiagonalRtl(int row, int col, string color)
+	{
+		int counter = 0;
+		int i;
+
+		for (i = 3; i <= -3; i--){
+			if (row + i < 0 || row + i >= nr
+			    || col + i < 0 || col + i >= nc) { 
+				continue;
+			} else if (color.Equals(board[row + i, col + i])){
+			    counter++;
+			    col--;
+			    if (counter == 4) {
+			    	{ return true; }
+			    }
+			  } else {
+			     counter = 0; 
+			  }
+			}
+
+		return false;
+	}
     }
