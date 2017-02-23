@@ -15,6 +15,7 @@ using System.Text;
 	// Plays the game using a while loop until one of the check methods returns.
 	static void play(Board board)
 	{
+		Game game = new Game(board);
            	string[] colors = {"X","O"};
 		int i = 0;
 		while (true) {
@@ -25,22 +26,22 @@ using System.Text;
 			string color = colors[i];
 			int row = board.updateBoard(color, numcol);
 			if (row != -1) {
-				if (board.checkHorizontal(row, color)) {
+				if (game.checkHorizontal(row, color)) {
 					board.drawBoard();
 					Console.WriteLine();
 					Console.WriteLine("Woohoo! Player " + color + " wins!");
 					return;			
-				} else if (board.checkVertical(numcol, color)) {
+				} else if (game.checkVertical(numcol, color)) {
 					board.drawBoard();
 					Console.WriteLine();
 					Console.WriteLine("Woohoo! Player " + color + " wins!");
 					return;			
-				} else if (board.checkDiagonalRtl(row, numcol, color)) {
+				} else if (game.checkDiagonalRtl(row, numcol, color)) {
 					board.drawBoard();
 					Console.WriteLine();
 					Console.WriteLine("Woohoo! Player " + color + " wins!");
 					return;			
-				} else if (board.checkDiagonalLtr(row, numcol, color)) {
+				} else if (game.checkDiagonalLtr(row, numcol, color)) {
 					board.drawBoard();
 					Console.WriteLine();
 					Console.WriteLine("Woohoo! Player " + color + " wins!");
