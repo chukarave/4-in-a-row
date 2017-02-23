@@ -1,0 +1,7 @@
+4 in a row
+==========
+Each player on their turn places their symbol in any one of the
+seven columns in the frame. Play then passes to the other player.
+Play continues this way until one player achieves a row of 4 of
+their symbols, in which case they have won the game, or until no row of
+4 is possible in which case the game is a draw.
