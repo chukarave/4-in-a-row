@@ -5,9 +5,9 @@ using System.Text;
 
     class Board
     {
-	string[,] board; 
-	int nc;	
-	int nr;	
+	private string[,] board; 
+	public int nc {get; private set;} 
+	public int nr {get; private set;}  
 
 	public Board(int numcolumns, int numrows)
 	
@@ -37,7 +37,6 @@ using System.Text;
                }
 
                Console.WriteLine(); 	
-		// Draw initial board.Console.WriteLine();
             }
             for (j = 0; j < nc; j++ )
 	    {
@@ -64,84 +63,10 @@ using System.Text;
 
         }
 
-	// Check if the same color repeats 4 consective times in a column.
-	public bool checkVertical(int col, string color)
+	public string getAt(int row, int column)
 	{
-		int row;
-		int counter = 0;
-		for (row = 0; row < nr; row++){
-			if (color.Equals(board[row, col])) {
-			    counter++;		
-			    if (counter == 4)
-			   	 { return true; }
-			} else {
-			    counter = 0;
-			}
-		}
-
-		return false;
-	}
+		return board[row, column];	
 	
-	// Check if the same color repeats 4 consective times in a row.
-	public bool checkHorizontal(int row, string color)
-	{
-		int col;
-		int counter = 0;
-		for (col = 0; col < nc; col++){
-			if (color.Equals(board[row, col])) {
-			    counter++;		
-			    if (counter == 4)
-			   	 { return true; }
-			} else {
-			    counter = 0;
-			}
-		}
-
-		return false;
 	}
 
-	public bool checkDiagonalLtr(int row, int col, string color)
-	{
-		int counter = 0;
-		int i;
-
-		for (i = -3; i <= 3; i++){
-			if (row + i < 0 || row + i >= nr
-			    || col + i < 0 || col + i >= nc) { 
-				continue;
-			} else if (color.Equals(board[row + i, col + i])){
-			    counter++;
-			    if (counter == 4) {
-			    	{ return true; }
-			    }
-			  } else {
-			     counter = 0; 
-			  }
-			}
-
-		return false;
-	}
-
-	public bool checkDiagonalRtl(int row, int col, string color)
-	{
-		int counter = 0;
-		int i;
-
-		for (i = 3; i <= -3; i--){
-			if (row + i < 0 || row + i >= nr
-			    || col + i < 0 || col + i >= nc) { 
-				continue;
-			} else if (color.Equals(board[row + i, col + i])){
-			    counter++;
-			    col--;
-			    if (counter == 4) {
-			    	{ return true; }
-			    }
-			  } else {
-			     counter = 0; 
-			  }
-			}
-
-		return false;
-	}
-    }
+}
