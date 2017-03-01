@@ -4,16 +4,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-    class Game
-    {
+class Game
+{
 	private Board board;
 
+	/// <summary>
+	/// Constructor for the <see cref="Game"/> class.
+	/// </summary>
+	/// <param name='board'> Board object </param>
 	public Game(Board board)
 	{
 	    this.board = board;
 	}
 	
-	// Check if the same player symbol repeats 4 consective times in a column.
+	/// <summary>
+	/// Checks if the same player symbol repeats 4 consective times in a column.
+	/// </summary>
+	/// <returns> True if sequence of 4 is found </returns>
+	/// <param name='col'> Column to check </param>
+	/// <param name='player'> player </param>
 	public bool checkVertical(int col, Player player)
 	{
 		int row;
@@ -32,7 +41,12 @@ using System.Text;
 		return false;
 	}
 	
-	// Check if the same player symbol repeats 4 consective times in a row.
+	/// <summary>
+	/// Checks if the same player symbol repeats 4 consective times in a row.
+	/// </summary>
+	/// <returns> True if sequence of 4 is found </returns>
+	/// <param name='col'> Column to check </param>
+	/// <param name='player'> player </param>
 	public bool checkHorizontal(int row, Player player)
 	{
 		int col;
@@ -50,6 +64,13 @@ using System.Text;
 		return false;
 	}
 
+	/// <summary>
+	/// Checks if the same player symbol repeats 4 consective times diagonally from left to right.
+	/// </summary>
+	/// <returns> True if sequence of 4 is found </returns>
+	/// <param name='row'> Row to start check from </param>
+	/// <param name='col'> Column to start check from </param>
+	/// <param name='player'> player </param>
 	public bool checkDiagonalLtr(int row, int col, Player player)
 	{
 		int counter = 0;
@@ -72,6 +93,13 @@ using System.Text;
 		return false;
 	}
 
+	/// <summary>
+	/// Checks if the same player symbol repeats 4 consective times diagonally from right to left.
+	/// </summary>
+	/// <returns> True if sequence of 4 is found </returns>
+	/// <param name='row'> Row to start check from </param>
+	/// <param name='col'> Column to start check from </param>
+	/// <param name='player'> player </param>
 	public bool checkDiagonalRtl(int row, int col, Player player)
 	{
 		int counter = 0;
@@ -95,7 +123,11 @@ using System.Text;
 		return false;
 	}
     
-    public void callWinner(Player player)
+    /// <summary>
+    /// Declares the winner.
+    /// </summary>
+    /// <param name='player'> winning player.</param>
+    public void declareWinner(Player player)
     {
         Console.WriteLine();
 	    Console.WriteLine("✲✱✲✱✲✱✲✱✲✱✲✱✲✱✲✱✲✱✲✱✲✱✲✱✲✱✲✱✲✱✲✱✲✱"); 
@@ -105,6 +137,9 @@ using System.Text;
 
     }
 
+    /// <summary>
+    /// Prints the instructions from file.
+    /// </summary>
     public void showHelp()
     {
         string text = File.ReadAllText("instructions.txt");        

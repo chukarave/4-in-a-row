@@ -46,24 +46,28 @@ using System.Text;
 			int row = board.updateBoard(player, numcol);
 			if (row != -1) {
 				if (game.checkHorizontal(row, player)) {
+					Console.WriteLine();
 					board.drawBoard();
 					Console.WriteLine(); 
-                    game.callWinner(player);
+                    game.declareWinner(player);
 					return;			
 				} else if (game.checkVertical(numcol, player)) {
+					Console.WriteLine();
 					board.drawBoard();
 					Console.WriteLine();
-                    game.callWinner(player);
+                    game.declareWinner(player);
 					return;			
 				} else if (game.checkDiagonalRtl(row, numcol, player)) {
+					Console.WriteLine();
 					board.drawBoard();
 					Console.WriteLine();
-                    game.callWinner(player);
+                    game.declareWinner(player);
 					return;			
 				} else if (game.checkDiagonalLtr(row, numcol, player)) {
+					Console.WriteLine();
 					board.drawBoard();
 					Console.WriteLine();
-                    game.callWinner(player);
+                    game.declareWinner(player);
 					return;			
 				}
 
