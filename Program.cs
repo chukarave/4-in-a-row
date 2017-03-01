@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
     class Program
     {
+
         static void Main(string[] args)
         {
 		Board board = new Board(7,7);
@@ -16,35 +18,52 @@ using System.Text;
 	static void play(Board board)
 	{
 		Game game = new Game(board);
-           	string[] colors = {"X","O"};
+        //string[] players = {"yellow", "red"};
+        Player[] players = {Player.One, Player.Two};
 		int i = 0;
+        Console.WriteLine("╔═════════════════╗");
+        Console.WriteLine("║  𝑭𝑶𝑼𝑹 𝑰𝑵 𝑨 𝑹𝑶𝑾  ║");
+        Console.WriteLine("╚═════════════════╝");
+
 		while (true) {
-			board.drawBoard();
+			Player player = players[i];
 			Console.WriteLine();
-			Console.WriteLine("Please choose column to play: ");
-			int numcol = Convert.ToInt32(Console.ReadLine());
-			string color = colors[i];
-			int row = board.updateBoard(color, numcol);
+			Console.WriteLine("   Player " + player);
+            board.drawBoard();
+			Console.WriteLine();
+            char input;
+            do {
+			    Console.WriteLine();
+    			Console.WriteLine("Please choose column to play or h for instructions: ");
+                input = Console.ReadKey().KeyChar;
+            } while (input != 'h' && input != 'H' && (input < '1' || input > '7')); 
+            if (input == 'h' || input == 'H'){
+			  Console.WriteLine();
+              game.showHelp();
+              continue;
+            }
+   			int numcol = (input - '0') - 1;
+			int row = board.updateBoard(player, numcol);
 			if (row != -1) {
-				if (game.checkHorizontal(row, color)) {
+				if (game.checkHorizontal(row, player)) {
 					board.drawBoard();
-					Console.WriteLine();
-					Console.WriteLine("Woohoo! Player " + color + " wins!");
+					Console.WriteLine(); 
+                    game.callWinner(player);
 					return;			
-				} else if (game.checkVertical(numcol, color)) {
+				} else if (game.checkVertical(numcol, player)) {
 					board.drawBoard();
 					Console.WriteLine();
-					Console.WriteLine("Woohoo! Player " + color + " wins!");
+                    game.callWinner(player);
 					return;			
-				} else if (game.checkDiagonalRtl(row, numcol, color)) {
+				} else if (game.checkDiagonalRtl(row, numcol, player)) {
 					board.drawBoard();
 					Console.WriteLine();
-					Console.WriteLine("Woohoo! Player " + color + " wins!");
+                    game.callWinner(player);
 					return;			
-				} else if (game.checkDiagonalLtr(row, numcol, color)) {
+				} else if (game.checkDiagonalLtr(row, numcol, player)) {
 					board.drawBoard();
 					Console.WriteLine();
-					Console.WriteLine("Woohoo! Player " + color + " wins!");
+                    game.callWinner(player);
 					return;			
 				}
 

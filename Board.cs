@@ -5,7 +5,7 @@ using System.Text;
 
     class Board
     {
-	private string[,] board; 
+	private Player[,] board; 
 	public int nc {get; private set;} 
 	public int nr {get; private set;}  
 
@@ -14,7 +14,7 @@ using System.Text;
 	{
 	    nc = numcolumns;
 	    nr = numrows;
-	    board = new string[nr,nc];
+	    board = new Player[nr,nc];
 	  
 	}
 	
@@ -26,35 +26,39 @@ using System.Text;
          
             for (i = 0; i < nr; i++ )
             {
+                   Console.Write("  ");
                 for (j = 0; j < nc; j++ )
                 {
-                   if (board[i, j] == null)
-		   {
-		   
-                    Console.Write("_");
-		   } 
-                    Console.Write(board[i, j]+" ");
+                   if (board[i, j] == Player.Undefined) {
+		              Console.Write("_ ");
+		           } 
+                   else if (board[i, j] == Player.One) { 
+                      Console.Write("☻ ");
+                   } else {
+                      Console.Write("☺ ");
+                   }
                }
 
                Console.WriteLine(); 	
             }
+            Console.Write("  ");
             for (j = 0; j < nc; j++ )
 	    {
-                Console.Write( j + " ");
+                Console.Write( j + 1 + " ");
 	    }
 		
 
         }
 
-        public int updateBoard(string color, int numcol)
+        public int updateBoard(Player player, int numcol)
         { 
             int row;
 
        	//iterate over rows and check if spot is occupied 
             for (row = nr-1; row >= 0; row--)
-            { 
-		if (board[row, numcol] == null) {
-	  	    board[row, numcol] = color;
+            {
+		if (board[row, numcol] == Player.Undefined) {
+	  	    board[row, numcol] = player;
 		    return row;
 		}
             }
@@ -63,7 +67,7 @@ using System.Text;
 
         }
 
-	public string getAt(int row, int column)
+	public Player getAt(int row, int column)
 	{
 		return board[row, column];	
 	
